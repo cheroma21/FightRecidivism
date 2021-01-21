@@ -1,0 +1,220 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  active_admin:
+    resources:
+      change_image:
+        new_model: New Image
+        delete_model: Delete Image
+  flash:
+    errors:
+      client:
+        invalid: There was a problem saving this client.
+      merge:
+        invalid: There was a problem merging these clients. Please try again, or contact support for assistance.
+    notices:
+      client:
+        taken: You already have a client with this phone number.
+        unauthorized: The client you tried to view is not in your caseload.
+        deactivated: '%{client_full_name} has been successfully deactivated'
+        transferred: '%{client_full_name} was transferred to %{user_full_name}.'
+      mass_message:
+        sent: Your mass message has been sent.
+        scheduled: Your mass message has been scheduled.
+      merge: You have merged these clients
+  voice_response: This phone number can only receive text messages. Please hang up and send a text message.
+  clients:
+    empty: Add a client to get started.
+  messages:
+    empty: 'You haven’t sent %{client_first_name} any messages yet. Start by introducing yourself.'
+    transferred_from: '%{client_full_name} was transferred to you from %{user_full_name}.'
+    transferred_to: 'Transferred to %{user_full_name}.'
+    phone_number_edited_by_you: 'Updated the phone number to %{new_phone_number}'
+    phone_number_edited: '%{user_full_name} updated the phone number to %{new_phone_number}'
+    admin_user_description: A ClientComm Admin
+    conversation_ends: '"%{full_name} %{phone_number}" conversation ends'
+    merged_with: '"%{from_full_name} %{from_phone_number}" merged with "%{to_full_name} %{to_phone_number}"'
+  message:
+    unclaimed_response: 'AUTO REPLY: We don’t recognize this number. Please make sure you include your name and the person you want to reach and we’ll get your message to them.'
+    auto_court_reminder: 'Automated alert: Your next court date is at %{location} on %{date}, %{time} in Rm %{room}. Please text with any questions.'
+    welcome: '%{salutation} %{client_full_name}, this is Agent %{user_last_name} from Pretrial. This is a text number where you can reach me. Please reply to confirm you received this message.'
+    status:
+      undelivered: Message could not be delivered. Please check this is a working cell phone number and try again.
+      blacklisted: Message could not be delivered. This phone number does not accept text messages from ClientComm.
+      sent: Sending
+      maybe_undelivered: Message may be undelivered.
+    transcript:
+      status:
+        accepted: accepted
+        blacklisted: NOT DELIVERED
+        delivered: delivered
+        failed: NOT DELIVERED
+        queued: queued
+        receiving: receiving
+        received: received
+        sending: MAY BE UNDELIVERED
+        sent: MAY BE UNDELIVERED
+        undelivered: NOT DELIVERED
+        maybe_undelivered: MAY BE UNDELIVERED
+  report_mailer:
+    subject: '[ClientComm] Usage report for %{start_date} - %{end_date}'
+    summary: 'Usage statistics for the week of %{start_date} to %{end_date}'
+    column_headers:
+      name: User
+      outbound: Outbound
+      scheduled: Outbound Scheduled
+      inbound: Inbound
+      total: Total
+    footer: '* Outbound Scheduled is the subset of outbound messages that were scheduled in advance by a user. Total is the total number of all outbound and inbound messages.'
+  activerecord:
+    models:
+      court_date_csv:
+        one: Court Reminder CSV
+        other: Court Reminder CSVs
+    errors:
+      models:
+        reporting_relationship:
+          attributes:
+            user:
+              blank: You need to pick someone to transfer this client to.
+            client:
+              existing_dept_relationship: 'This client already exists and belongs to %{user_full_name}. Contact your ClientComm administrator and request that they be transferred to you.'
+              existing_user_relationship: 'Your client <a href="%{href}">%{client_full_name}</a> is already using this number.'
+        user:
+          attributes:
+            phone_number:
+              taken: Phone number is already in use. If you need help, you can click the chat button at the bottom of your screen.
+              invalid: This is not a valid phone number.
+            active:
+              active_reporting_relationships: User with active reporting relationships cannot be deactivated.
+            reporting_relationships:
+              invalid: A reporting relationship conflict occurred.
+        client:
+          attributes:
+            phone_number:
+              invalid: This is not a valid phone number.
+              taken: Phone number is already in use. If you need help, you can click the chat button at the bottom of your screen.
+              inactive_taken: This client has been deactivated. Please use the Add Client button to recover them.
+            next_court_date_at:
+              invalid: Please enter a valid date, or leave the field blank.
+        message:
+          attributes:
+            like_message:
+              different_reporting_relationship: Cannot like a message in a different reporting relationship
+            send_at:
+              on_or_after: You can't schedule a message in the past.
+              before: You can't schedule a message more than a year in the future.
+            body:
+              blank: You need to add a message.
+        template:
+          attributes:
+            title:
+              blank: Give your template a name so you can find it in the list.
+            body:
+              blank: Add a template.
+  activemodel:
+    forms:
+      models:
+        user:
+          attributes:
+            full_name: Full name
+            email: Email
+            phone_number: Desk phone number
+            current_password: Current password
+            password: New password
+            password_confirmation: Confirm new password
+    errors:
+      models:
+        mass_message:
+          attributes:
+            message:
+              blank: You need to add a message.
+            reporting_relationships:
+              blank: You need to pick at least one recipient.
+  datetime:
+    distance_in_words:
+      less_than_x_minutes:
+        one: just now
+  views:
+    admin:
+      reporting_relationships:
+        edit:
+          unread_transfer: 'This client has unread messages. The messages will not be transferred to the new user.'
+    change_text:
+      title: Making a difference, one text at a time
+      body: We’re highlighting thank you’s from real clients who appreciate the work you do every day!
+      more_link_text: More about positive reinforcements
+      more_body: Research shows that sending four positive reinforcements for every one sanction helps client succeed. When you text clients — even something as basic as a reminder — think about how you can turn that communication into an opportunity for encouragement. Clients will thank you!
+    clients:
+      edit:
+        manage:
+          unread_transfer: "You have unread messages from this client. The messages will not be transferred to the new user. Transfer now, or <a href='%{href}'>click here</a> to read them."
+          unread_deactivate: "You have unread messages from this client. These messages will be marked as read. Deactivate, or <a href='%{href}'>click here</a> to read them."
+    tips:
+      title: ClientComm Tips & Tricks
+      positive_reinforcement_html: Clients who get four positive reinforcements for every sanction are more likely to succeed. <a href="/mass_messages/new?message=I%27m+proud+of+your+progress.+Keep+it+up+and+let+me+know+if+you+need+anything.&utm_source=clientcomm&utm_campaign=ebp">Click here</a> to send a positive reinforcement.
+    mass_message:
+      new:
+        schedule_form:
+          title: Schedule message
+    shared:
+      cancel: Cancel
+      home: Home
+    templates:
+      index:
+        title: My templates
+        new_template: New template
+        table_headers:
+          template: Template
+          edit: Edit
+        instructions: Templates are reusable messages. You can add and remove words before you send them, so try adding placeholders for names and dates.
+      new:
+        modal:
+          title: New template
+        form:
+          title:
+            label: Template name
+            placeholder: 'Example: Check-in'
+          body:
+            label: Template
+            placeholder: 'Example: Hi, how are you doing? Is there anything I can do to help?'
+          submit: Save template
+      edit:
+        modal:
+          title: Edit template
+        form:
+          title:
+            label: Template name
+          body:
+            label: Template
+          delete: Delete template
+          delete_confirmation: Are you sure you want to delete this template?
+          submit: Update
+    users:
+      registrations:
+        edit:
+          settings:
+            title: Edit account settings
+            submit: Update settings
+          password:
+            title: Change password
+            submit: Change password

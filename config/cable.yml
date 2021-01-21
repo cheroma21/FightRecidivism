@@ -1,0 +1,11 @@
+production: &default
+  adapter: postgresql
+
+development:
+  <<: *default
+
+staging:
+  <<: *default
+
+test:
+  adapter: test
